@@ -18,7 +18,7 @@
           <h6 class="card-subtitle text-light">The Perfect Study Friend</h6>
         </div>
       </div>
-      <div class="card pomo-red text-center m-2 row">
+      <div class="card pomo-red text-center m-2 row" id="timer">
 
         <div class="card-body">
           <div class="container pt-4">
@@ -35,12 +35,12 @@
             </div>
           </div>
 
-          <h1 class="card-title text-white clock p-2"><span id="minute">25</span>:<span id="second">00</span></h1>
+          <h1 class="card-title text-white clock p-2 text-center"><span id="minute">25</span>:<span id="second">00</span></h1>
 
           <div class="container">
             <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-pomo w-100" id="trigger" onclick="start()">Start</button>
+                <button type="button" class="opacity-25 btn btn-pomo w-100" id="trigger" onclick="start()">Start</button>
               </div>
               <div class="col">
                 <button type="button" class="btn btn-pomo w-100" onclick="reset()">Reset</button>
@@ -50,8 +50,17 @@
         </div>
 
       </div>
-      <p class="text-center love m-3">made with ❤️️ by <a href="https://github.com/khloe-r">khloe</a></p>
+      <div class="card pomo-red text-center m-2 row">
+        <div class="card-body">
+          <button type="button" class="btn btn-pomo w-100" id="setting-btn" onclick="setting()">Open Settings</button>
+          <div id="setting-panel">
+            <h2 class="card-title text-white pt-3" >Settings</h2>
+            <form
+          </div>
+        </div>
+      </div>
     </div>
+    <p class="text-center love m-3">made with ❤️️ by <a href="https://github.com/khloe-r">khloe</a></p>
     <script src="action.js"></script>
   </body>
 </html>

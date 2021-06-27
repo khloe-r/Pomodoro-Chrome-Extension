@@ -2,12 +2,21 @@
   background-color: rgb(224, 95, 95);
 }
 
+.pomo-teal {
+  background-color: rgb(39, 168, 151);
+}
+
+.pomo-green {
+  background-color: rgb(103, 170, 77);
+}
+
 .clock {
   font-size: 90px;
 }
 
 .btn-pomo {
-  background-color: rgb(230, 122, 122);
+  /* background-color: rgb(230, 122, 122); */
+  background-color: rgba(255, 255, 255, 0.25);
   color: #fff;
 }
 

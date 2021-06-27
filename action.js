@@ -1,15 +1,19 @@
 var minute = document.getElementById("minute");
 var second = document.getElementById("second");
 var trigger = document.getElementById("trigger");
+var card = document.getElementById("timer");
+var settingpanel = document.getElementById("setting-panel");
+var settingbtn = document.getElementById("setting-btn");
 var pomo = 25;
 var counter = 0;
 
 var i = 0; 
+settingpanel.style.display = "none"
 
 // Start Button
 function start() {
   if (trigger.innerHTML === "Start") {
-    i = setInterval(decreaseTime, 1000)
+    i = setInterval(decreaseTime, 2)
     trigger.innerHTML = "Pause"
   }
   else {
@@ -19,18 +23,33 @@ function start() {
 } 
 
 function study() {
+  clearInterval(i)
+  trigger.innerHTML = "Start"
   pomo = 25
   setTime()
+  card.classList.toggle('pomo-red', true)
+  card.classList.toggle('pomo-teal', false)
+  card.classList.toggle('pomo-green', false)
 }
 
 function shortbreak() {
+  clearInterval(i)
+  trigger.innerHTML = "Start"
   pomo = 5
   setTime()
+  card.classList.toggle('pomo-red', false)
+  card.classList.toggle('pomo-teal', true)
+  card.classList.toggle('pomo-green', false)
 }
 
 function longbreak() {
+  clearInterval(i)
+  trigger.innerHTML = "Start"
   pomo = 15
   setTime()
+  card.classList.toggle('pomo-red', false)
+  card.classList.toggle('pomo-teal', false)
+  card.classList.toggle('pomo-green', true)
 }
 
 function setTime() {
@@ -59,18 +78,15 @@ function decreaseTime() {
       if (pomo === 25) {
         counter += 1
         if (counter === 3) {
-          pomo = 15
           counter = 0
-          minute.innerHTML = pomo
+          longbreak()
         }
         else {
-          pomo = 5
-          minute.innerHTML = pomo
+          shortbreak()
         }
       }
       else {
-        pomo = 25
-        minute.innerHTML = pomo
+        study()
       }
       clearInterval(i)
     }
@@ -78,7 +94,17 @@ function decreaseTime() {
 }
 
 function reset() {
-  second.innerHTML = "00"
-  minute.innerHTML = "25"
-  clearInterval(i)
+  study()
+}
+
+function setting() {
+  if (settingbtn.innerHTML === "Open Settings")
+  {
+    settingbtn.innerHTML = "Close Settings"
+    settingpanel.style.display = "block"
+  }
+  else {
+    settingbtn.innerHTML = "Open Settings"
+    settingpanel.style.display = "none"
+  }
 }
