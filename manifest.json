@@ -1,0 +1,31 @@
+{
+    "name": "Pomodoro Buddy",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "The perfect Pomodoro Timer always accessible from your web browser",
+    "homepage_url": "https://github.com/khloe-r",
+    "icons": {
+        "48": "icon.png"
+    },
+    "default_locale": "en",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_title": "Pomodoro Buddy",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "chrome://favicon/",
+        "clipboardRead",
+        "clipboardWrite",
+        "contentSettings",
+        "contextMenus",
+        "cookies",
+        "idle",
+        "management",
+        "notifications",
+        "tabs",
+        "background",
+        "alarms",
+        "storage"
+    ]
+}
