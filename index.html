@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://beneficialcriticalcomputers.shreygupta1.repl.co/style.css">
       <link rel="stylesheet" href="style.css">
-      <script src="action.js"></script>
   </head>
 
   <body>
@@ -22,20 +21,37 @@
       <div class="card pomo-red text-center m-2 row">
 
         <div class="card-body">
-          <h1 class="card-title text-white clock"><span id="minute">0</span>:<span id="second">00</span></h1>
+          <div class="container pt-4">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-pomo w-100" onclick="study()">Study</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-pomo w-100" onclick="shortbreak()">Short Break</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-pomo w-100" onclick="longbreak()">Long Break</button>
+              </div>
+            </div>
+          </div>
+
+          <h1 class="card-title text-white clock p-2"><span id="minute">25</span>:<span id="second">00</span></h1>
+
           <div class="container">
             <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-pomo w-100">Start</button>
+                <button type="button" class="btn btn-pomo w-100" id="trigger" onclick="start()">Start</button>
               </div>
               <div class="col">
-                <button type="button" class="btn btn-pomo w-100">Reset</button>
+                <button type="button" class="btn btn-pomo w-100" onclick="reset()">Reset</button>
               </div>
             </div>
           </div>
         </div>
 
       </div>
+      <p class="text-center love m-3">made with ❤️️ by <a href="https://github.com/khloe-r">khloe</a></p>
     </div>
+    <script src="action.js"></script>
   </body>
 </html>
