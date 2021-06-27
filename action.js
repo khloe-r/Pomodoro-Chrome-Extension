@@ -5,7 +5,12 @@ var card = document.getElementById("timer");
 var settingpanel = document.getElementById("setting-panel");
 var settingbtn = document.getElementById("setting-btn");
 var pomo = 25;
+var status = 0; // 0 - study, 1 - shortbreak, 2 - longbreak
 var counter = 0;
+
+var st = 25;
+var sb = 5;
+var lb = 15;
 
 var i = 0; 
 settingpanel.style.display = "none"
@@ -13,7 +18,7 @@ settingpanel.style.display = "none"
 // Start Button
 function start() {
   if (trigger.innerHTML === "Start") {
-    i = setInterval(decreaseTime, 2)
+    i = setInterval(decreaseTime, 1000)
     trigger.innerHTML = "Pause"
   }
   else {
@@ -22,10 +27,13 @@ function start() {
   }
 } 
 
+trigger.addEventListener("click", start);
+
 function study() {
   clearInterval(i)
   trigger.innerHTML = "Start"
-  pomo = 25
+  pomo = st
+  status = 0
   setTime()
   card.classList.toggle('pomo-red', true)
   card.classList.toggle('pomo-teal', false)
@@ -35,7 +43,8 @@ function study() {
 function shortbreak() {
   clearInterval(i)
   trigger.innerHTML = "Start"
-  pomo = 5
+  pomo = sb
+  status = 1
   setTime()
   card.classList.toggle('pomo-red', false)
   card.classList.toggle('pomo-teal', true)
@@ -45,12 +54,17 @@ function shortbreak() {
 function longbreak() {
   clearInterval(i)
   trigger.innerHTML = "Start"
-  pomo = 15
+  pomo = lb
+  status = 2
   setTime()
   card.classList.toggle('pomo-red', false)
   card.classList.toggle('pomo-teal', false)
   card.classList.toggle('pomo-green', true)
 }
+
+document.getElementById("study").addEventListener("click", study);
+document.getElementById("shortbreak").addEventListener("click", shortbreak);
+document.getElementById("longbreak").addEventListener("click", longbreak);
 
 function setTime() {
   minute.innerHTML = pomo
@@ -75,7 +89,7 @@ function decreaseTime() {
     }
     else {
       second.innerHTML = "00"
-      if (pomo === 25) {
+      if (pomo === st && status === 0) {
         counter += 1
         if (counter === 3) {
           counter = 0
@@ -97,6 +111,8 @@ function reset() {
   study()
 }
 
+document.getElementById("reset").addEventListener("click", reset);
+
 function setting() {
   if (settingbtn.innerHTML === "Open Settings")
   {
@@ -108,3 +124,25 @@ function setting() {
     settingpanel.style.display = "none"
   }
 }
+
+settingbtn.addEventListener("click", setting);
+
+function submit() {
+  st = document.getElementById("studycust").value
+  sb = document.getElementById("shortbreakcust").value
+  lb = document.getElementById("longbreakcust").value
+  settingbtn.innerHTML = "Open Settings"
+  settingpanel.style.display = "none"
+  if (status === '0') {
+    study()
+  }
+  else if (status === '1') {
+    shortbreak()
+  }
+  else if (status === '2') {
+    longbreak()
+  }
+}
+
+document.getElementById("submit").addEventListener("click", submit);
+

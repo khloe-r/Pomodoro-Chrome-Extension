@@ -26,3 +26,14 @@
   padding-left: 0px;
   text-align: center;
 }
+
+body {
+  margin-right: 12px;
+  width:320px;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  color: #fff;
+}
