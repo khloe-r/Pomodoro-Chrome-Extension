@@ -12,6 +12,9 @@ var st = 25;
 var sb = 5;
 var lb = 15;
 
+var tasks = [];
+var tasknum = 0;
+
 var i = 0; 
 settingpanel.style.display = "none"
 
@@ -146,3 +149,31 @@ function submit() {
 
 document.getElementById("submit").addEventListener("click", submit);
 
+function name() {
+  window.location.assign("https://github.com/khloe-r")
+}
+
+document.getElementById("name").addEventListener("click", name);
+
+function addTask() {
+  var t = String(document.getElementById("floatingTask").value).trim()
+  if (t != "") {
+    document.getElementById("floatingTask").value = ""
+    tasks.push(t)
+    document.getElementById("tasklist").innerHTML += `<li class="list-group-item btn-pomo mb-2 d-flex justify-content-between" id="${t}-${tasknum}"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">${t}<span id="${t}-${tasknum}-close" class="badge pomo-red rounded-pill">X</span></li>`
+    tasknum += 1
+  }
+}
+
+document.getElementById("add-task").addEventListener("click", addTask);
+
+function removeTask(event) {
+  if (event.target.id.endsWith("-close")) {
+    var idname = String(event.target.id) 
+    idname = idname.substring(0, idname.length-6)
+    document.getElementById(idname).remove()
+  } 
+  console.log(event.target.id)  
+}
+
+document.getElementById("tasklist").addEventListener("click", removeTask)

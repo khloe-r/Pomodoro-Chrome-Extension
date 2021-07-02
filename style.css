@@ -37,3 +37,14 @@ body {
 form {
   color: #fff;
 }
+
+#floatingTask {
+  background-color: rgb(224, 95, 95);
+  border: none;
+  border-bottom: 1.5px solid #fff;
+  color: #fff;
+}
+
+.task {
+  color: #fff;
+}

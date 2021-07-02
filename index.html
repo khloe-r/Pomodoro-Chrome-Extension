@@ -5,7 +5,7 @@
       <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://* 'unsafe-inline' 'unsafe-eval' blob">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
       <title>Pomodoro Buddy</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <link rel="stylesheet" href="https://beneficialcriticalcomputers.shreygupta1.repl.co/style.css">
       <link rel="stylesheet" href="style.css">
   </head>
@@ -49,11 +49,34 @@
 
       </div>
       <div class="card pomo-red text-center m-2 row w-100">
+        <div class="card-body container">
+          <h2 class="card-title text-white">My Tasks</h2>
+          <form class="row">
+            <div class="col-auto col-9">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="floatingTask" placeholder="Add New Task">
+                <label for="floatingTask" class="task">Add New Task</label>
+              </div>
+            </div>
+            <div class="col-auto col-3 pt-3">
+              <button id="add-task" type="button" class="btn btn-light">+</button>
+            </div>
+          </form>
+          <div>
+            <ul id="tasklist" class="list-group">
+              <!-- <li class="list-group-item btn-pomo">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card pomo-red text-center m-2 row w-100">
         <div class="card-body">
           <button type="button" class="btn btn-pomo w-100" id="setting-btn">Open Settings</button>
           <div id="setting-panel">
-            <h2 class="card-title text-white pt-3" >Settings</h2>
-            <form>
+            <form class="pt-3">
               <div class="mb-3">
                 <label for="studycust" class="form-label">Study</label>
                 <input type="number" class="form-control" id="studycust" value="25" min="1">
@@ -66,12 +89,12 @@
                 <label for="longbreakcust" class="form-label">Long Break</label>
                 <input type="number" class="form-control" id="longbreakcust" value="15" min="1">
               </div>
-              <button type="button" class="btn btn-pomo" id="submit">Submit</button>
+              <button type="button" class="btn btn-pomo" id="submit">Submit Changes</button>
             </form>
           </div>
         </div>
       </div>
-      <p class="text-center love m-3">made with ❤️️ by <a href="https://github.com/khloe-r">khloe</a></p>
+      <p class="text-center love m-3">made with ❤️️ by <a id="name" href="https://github.com/khloe-r">khloe</a></p>
     </div>
     <script src="action.js"></script>
   </body>
