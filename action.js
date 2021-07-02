@@ -13,7 +13,12 @@ var sb = 5;
 var lb = 15;
 
 var tasks = [];
-var tasknum = 0;
+
+// Load Local Storage
+if (localStorage.getItem("tasks") !== null) {
+  tasks = JSON.parse(localStorage.getItem("tasks"));
+}
+renderTasks()
 
 var i = 0; 
 settingpanel.style.display = "none"
@@ -32,6 +37,7 @@ function start() {
 
 trigger.addEventListener("click", start);
 
+// Changes to study period
 function study() {
   clearInterval(i)
   trigger.innerHTML = "Start"
@@ -43,6 +49,7 @@ function study() {
   card.classList.toggle('pomo-green', false)
 }
 
+//Changes for short break period
 function shortbreak() {
   clearInterval(i)
   trigger.innerHTML = "Start"
@@ -54,6 +61,7 @@ function shortbreak() {
   card.classList.toggle('pomo-green', false)
 }
 
+//Changes for long break period
 function longbreak() {
   clearInterval(i)
   trigger.innerHTML = "Start"
@@ -69,11 +77,13 @@ document.getElementById("study").addEventListener("click", study);
 document.getElementById("shortbreak").addEventListener("click", shortbreak);
 document.getElementById("longbreak").addEventListener("click", longbreak);
 
+//Resets the current time
 function setTime() {
   minute.innerHTML = pomo
   second.innerHTML = "00"
 }
 
+//Implements timer logic
 function decreaseTime() {
   var s = parseInt(second.innerHTML) - 1
   if (s !== -1) {
@@ -110,12 +120,9 @@ function decreaseTime() {
   }
 }
 
-function reset() {
-  study()
-}
+document.getElementById("reset").addEventListener("click", study);
 
-document.getElementById("reset").addEventListener("click", reset);
-
+// Opens Setting Panel
 function setting() {
   if (settingbtn.innerHTML === "Open Settings")
   {
@@ -130,6 +137,7 @@ function setting() {
 
 settingbtn.addEventListener("click", setting);
 
+// Updates Time preferences
 function submit() {
   st = document.getElementById("studycust").value
   sb = document.getElementById("shortbreakcust").value
@@ -150,30 +158,41 @@ function submit() {
 document.getElementById("submit").addEventListener("click", submit);
 
 function name() {
-  window.location.assign("https://github.com/khloe-r")
+  chrome.tabs.create({ url: 'https://github.com/khloe-r'});
 }
 
 document.getElementById("name").addEventListener("click", name);
 
+// Adds task to list
 function addTask() {
   var t = String(document.getElementById("floatingTask").value).trim()
   if (t != "") {
     document.getElementById("floatingTask").value = ""
     tasks.push(t)
-    document.getElementById("tasklist").innerHTML += `<li class="list-group-item btn-pomo mb-2 d-flex justify-content-between" id="${t}-${tasknum}"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">${t}<span id="${t}-${tasknum}-close" class="badge pomo-red rounded-pill">X</span></li>`
-    tasknum += 1
+    renderTasks()
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
+}
+
+// Displays tasks from array
+function renderTasks() {
+  var taskList = tasks.map((tsk, num) => {
+    return `<li class="list-group-item btn-pomo mb-2 d-flex justify-content-between" id="${num}"> <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">${tsk}<span id="${num}-close" class="badge pomo-red rounded-pill">x</span></li>`
+  })
+  document.getElementById("tasklist").innerHTML = taskList.join('');
 }
 
 document.getElementById("add-task").addEventListener("click", addTask);
 
+//Removes task from list
 function removeTask(event) {
   if (event.target.id.endsWith("-close")) {
     var idname = String(event.target.id) 
     idname = idname.substring(0, idname.length-6)
-    document.getElementById(idname).remove()
+    tasks.splice(idname, 1)
+    renderTasks()
+    localStorage.setItem("tasks", JSON.stringify(tasks)); 
   } 
-  console.log(event.target.id)  
 }
 
 document.getElementById("tasklist").addEventListener("click", removeTask)

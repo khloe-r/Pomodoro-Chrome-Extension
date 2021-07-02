@@ -48,3 +48,7 @@ form {
 .task {
   color: #fff;
 }
+
+.badge:hover {
+  cursor: pointer;
+}
