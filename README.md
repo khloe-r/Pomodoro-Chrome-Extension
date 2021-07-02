@@ -9,4 +9,4 @@ Built using HTML, Bootstrap CSS, Javascript and Chrome API
 
 ## Demo
 1. To view project on web [click here!](https://pomodoro-chrome-extension.khloer.repl.co)
-2. To view as chrome extension, download code, visit [this site](chrome://extensions/) and click *Load Unpacked*
+2. To view as chrome extension, download code, visit chrome://extensions/ and click *Load Unpacked*
